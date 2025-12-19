@@ -1,6 +1,8 @@
 package com.example.librix_spring.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class MemberModel {
 
@@ -9,7 +11,8 @@ public class MemberModel {
     private String memEmail;
     private String memTelp;
     private String memAddress;
-    private LocalDateTime regDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate regDate;
     private String memPassword;
 
     public MemberModel() {}
@@ -62,11 +65,11 @@ public class MemberModel {
         this.memAddress = memAddress;
     }
 
-    public LocalDateTime getRegDate() {
+    public LocalDate getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(LocalDateTime regDate) {
+    public void setRegDate(LocalDate regDate) {
         this.regDate = regDate;
     }
 

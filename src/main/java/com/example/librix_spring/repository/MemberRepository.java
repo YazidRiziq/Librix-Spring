@@ -37,7 +37,7 @@ public class MemberRepository {
             m.setMemEmail(rs.getString("MemEmail"));
             m.setMemTelp(rs.getString("MemTelp"));
             m.setMemAddress(rs.getString("MemAddress"));
-            m.setRegDate(rs.getTimestamp("RegDate").toLocalDateTime());
+            m.setRegDate(rs.getDate("RegDate").toLocalDate());
             return m;
         }
     );
