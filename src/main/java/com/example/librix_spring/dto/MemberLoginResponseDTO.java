@@ -1,11 +1,11 @@
 package com.example.librix_spring.dto;
 
-public class LoginResponseDTO {
+public class MemberLoginResponseDTO {
     private String memID;
     private String memName;
     private String memEmail;
 
-    public LoginResponseDTO(String memID, String memName, String memEmail) {
+    public MemberLoginResponseDTO(String memID, String memName, String memEmail) {
         this.memID = memID;
         this.memName = memName;
         this.memEmail = memEmail;
