@@ -1,4 +1,4 @@
-package com.example.librix_spring.dto;
+package com.example.librix_spring.dto.login;
 
 public class MemberLoginResponseDTO {
     private String memID;

@@ -19,7 +19,7 @@ public class OfficerController {
         this.officerService = officerService;
     }
 
-    @GetMapping()
+    @GetMapping("/secret")
     public ResponseEntity<List<OfficerModel>> getAllOfficers() {
         return ResponseEntity.ok(officerService.getAllOfficers());
     }

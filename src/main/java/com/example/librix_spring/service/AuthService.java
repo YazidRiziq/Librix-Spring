@@ -3,8 +3,8 @@ package com.example.librix_spring.service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.librix_spring.dto.MemberLoginResponseDTO;
-import com.example.librix_spring.dto.OfficerLoginResponseDTO;
+import com.example.librix_spring.dto.login.MemberLoginResponseDTO;
+import com.example.librix_spring.dto.login.OfficerLoginResponseDTO;
 import com.example.librix_spring.model.MemberModel;
 import com.example.librix_spring.model.OfficerModel;
 import com.example.librix_spring.repository.MemberRepository;

@@ -3,10 +3,10 @@ package com.example.librix_spring.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.librix_spring.dto.MemberLoginRequestDTO;
-import com.example.librix_spring.dto.MemberLoginResponseDTO;
-import com.example.librix_spring.dto.OfficerLoginRequestDTO;
-import com.example.librix_spring.dto.OfficerLoginResponseDTO;
+import com.example.librix_spring.dto.login.MemberLoginRequestDTO;
+import com.example.librix_spring.dto.login.MemberLoginResponseDTO;
+import com.example.librix_spring.dto.login.OfficerLoginRequestDTO;
+import com.example.librix_spring.dto.login.OfficerLoginResponseDTO;
 import com.example.librix_spring.service.AuthService;
 
 @RestController

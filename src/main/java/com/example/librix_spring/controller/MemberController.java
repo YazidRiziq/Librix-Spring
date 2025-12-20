@@ -20,7 +20,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping()
+    @GetMapping("/secret")
     public ResponseEntity<List<MemberModel>> getAllMembers() {
         return ResponseEntity.ok(memberService.getAllMembers());
     }

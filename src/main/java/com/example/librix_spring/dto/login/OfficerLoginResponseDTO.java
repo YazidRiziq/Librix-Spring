@@ -1,4 +1,4 @@
-package com.example.librix_spring.dto;
+package com.example.librix_spring.dto.login;
 
 public class OfficerLoginResponseDTO {
     private String offID;
@@ -10,7 +10,7 @@ public class OfficerLoginResponseDTO {
         this.offName = offName;
         this.offEmail = offEmail;
     }
-    
+
     public String getOffID() {
         return offID;
     }
