@@ -18,7 +18,7 @@ public class MemberRepository {
 
     public void insertMember(MemberModel memberModel) {
         jdbcTemplate.update(
-            "Call AddMember (MemName, MemEmail, MemTelp, MemAddress, MemPassword) VALUES (?, ?, ?, ?, ?)",
+            "Call AddMember (?, ?, ?, ?, ?)",
             memberModel.getMemName(),
             memberModel.getMemEmail(),
             memberModel.getMemTelp(),
@@ -28,19 +28,38 @@ public class MemberRepository {
     }
 
     public List<MemberModel> findAllMembers() {
-    return jdbcTemplate.query(
-        "SELECT * FROM member",
-        (rs, rowNum) -> {
-            MemberModel m = new MemberModel();
-            m.setMemID(rs.getString("MemID"));
-            m.setMemName(rs.getString("MemName"));
-            m.setMemEmail(rs.getString("MemEmail"));
-            m.setMemTelp(rs.getString("MemTelp"));
-            m.setMemAddress(rs.getString("MemAddress"));
-            m.setRegDate(rs.getDate("RegDate").toLocalDate());
-            return m;
-        }
-    );
-}
+        return jdbcTemplate.query(
+            "SELECT * FROM member",
+            (rs, rowNum) -> {
+                MemberModel m = new MemberModel();
+                m.setMemID(rs.getString("MemID"));
+                m.setMemName(rs.getString("MemName"));
+                m.setMemEmail(rs.getString("MemEmail"));
+                m.setMemTelp(rs.getString("MemTelp"));
+                m.setMemAddress(rs.getString("MemAddress"));
+                m.setRegDate(rs.getDate("RegDate").toLocalDate());
+                m.setMemPassword(rs.getString("MemPassword"));
+                return m;
+            }
+        );
+    }
+
+    public MemberModel findByEmail(String email) {
+        return jdbcTemplate.queryForObject(
+            "SELECT * FROM member WHERE MemEmail = ?",
+            (rs, rowNum) -> {
+                MemberModel m = new MemberModel();
+                m.setMemID(rs.getString("MemID"));
+                m.setMemName(rs.getString("MemName"));
+                m.setMemEmail(rs.getString("MemEmail"));
+                m.setMemTelp(rs.getString("MemTelp"));
+                m.setMemAddress(rs.getString("MemAddress"));
+                m.setMemPassword(rs.getString("MemPassword"));
+                m.setRegDate(rs.getDate("RegDate").toLocalDate());
+                return m;
+            }, 
+            email
+        );
+    }
 
 }
