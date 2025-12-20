@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.librix_spring.dto.get.MemberDTO;
 import com.example.librix_spring.model.MemberModel;
 import com.example.librix_spring.service.MemberService;
 
@@ -23,6 +24,11 @@ public class MemberController {
     @GetMapping("/secret")
     public ResponseEntity<List<MemberModel>> getAllMembers() {
         return ResponseEntity.ok(memberService.getAllMembers());
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<MemberDTO>> getAllMembersDTO() {
+        return ResponseEntity.ok(memberService.getAllMembersDTO());
     }
 
     @PostMapping()

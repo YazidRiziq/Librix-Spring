@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.example.librix_spring.dto.get.MemberDTO;
 import com.example.librix_spring.model.MemberModel;
 import com.example.librix_spring.repository.MemberRepository;
 
@@ -29,5 +30,13 @@ public class MemberService {
     public List<MemberModel> getAllMembers() {
         return memberRepository.findAllMembers();
     }
+
+    public List<MemberDTO> getAllMembersDTO() {
+        return memberRepository.findAllMembers()
+            .stream()
+            .map(MemberDTO::from)
+            .toList();
+    }
+
 
 }
