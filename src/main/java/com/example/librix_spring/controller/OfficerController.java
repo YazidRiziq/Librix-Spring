@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import com.example.librix_spring.model.OfficerModel;
 import com.example.librix_spring.service.OfficerService;
 
+import io.swagger.v3.oas.annotations.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "Officer", description = "Officer CRUD API")
 @RestController
 @RequestMapping("/api/officers")
 public class OfficerController {
@@ -19,6 +23,10 @@ public class OfficerController {
         this.officerService = officerService;
     }
 
+    @Operation(
+        summary = "Get all officers",
+        description = "Data ini tidak boleh bocor ke bagian UI"
+    )
     @GetMapping("/secret")
     public ResponseEntity<List<OfficerModel>> getAllOfficers() {
         return ResponseEntity.ok(officerService.getAllOfficers());
