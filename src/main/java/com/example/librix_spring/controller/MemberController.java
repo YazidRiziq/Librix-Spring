@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.librix_spring.dto.Member.GetMemberDTO;
+import com.example.librix_spring.dto.Member.PostMemberDTO;
 import com.example.librix_spring.dto.Member.PutMemberDTO;
 import com.example.librix_spring.model.MemberModel;
 import com.example.librix_spring.service.MemberService;
@@ -32,9 +33,14 @@ public class MemberController {
         return ResponseEntity.ok(memberService.getAllMembersDTO());
     }
 
+    @GetMapping("/{memID}")
+    public ResponseEntity<GetMemberDTO> getMemberById(@PathVariable String memID) {
+        return ResponseEntity.ok(memberService.getMemberById(memID));
+    }
+
     @PostMapping()
-    public ResponseEntity<String> createMember(@RequestBody MemberModel memberModel) {
-        memberService.createMember(memberModel);
+    public ResponseEntity<String> createMember(@RequestBody PostMemberDTO dto) {
+        memberService.createMember(dto);
         return new ResponseEntity<>("Member created successfully", HttpStatus.CREATED);
     }
 

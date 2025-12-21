@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.librix_spring.dto.Member.GetMemberDTO;
+import com.example.librix_spring.dto.Member.PostMemberDTO;
 import com.example.librix_spring.dto.Member.PutMemberDTO;
 import com.example.librix_spring.model.MemberModel;
 import com.example.librix_spring.repository.MemberRepository;
@@ -22,14 +23,28 @@ public class MemberService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-    public void createMember(MemberModel memberModel) {
-        String hashPassword = passwordEncoder.encode(memberModel.getMemPassword());
-        memberModel.setMemPassword(hashPassword);
+    public void createMember(PostMemberDTO dto) {
+        String hashPassword = passwordEncoder.encode(dto.getMemPassword());
+        MemberModel memberModel = new MemberModel(
+            dto.getMemName(),
+            dto.getMemEmail(),
+            dto.getMemTelp(),
+            dto.getMemAddress(),
+            hashPassword
+        );
         memberRepository.insertMember(memberModel);
     }
 
     public List<MemberModel> getAllMembers() {
         return memberRepository.findAllMembers();
+    }
+
+    public GetMemberDTO getMemberById(String memID) {
+        MemberModel memberModel = memberRepository.findById(memID);
+        if (memberModel == null) {
+            throw new RuntimeException("Member not found with memID: " + memID);
+        }
+        return GetMemberDTO.from(memberModel);
     }
 
     public List<GetMemberDTO> getAllMembersDTO() {

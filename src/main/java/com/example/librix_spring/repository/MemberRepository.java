@@ -45,6 +45,22 @@ public class MemberRepository {
         );
     }
 
+    public MemberModel findById(String memID) {
+        return jdbcTemplate.queryForObject(
+            "SELECT * FROM member WHERE MemID = ?",
+            (rs, rowNum) -> {
+                MemberModel m = new MemberModel();
+                m.setMemName(rs.getString("MemName"));
+                m.setMemEmail(rs.getString("MemEmail"));
+                m.setMemTelp(rs.getString("MemTelp"));
+                m.setMemAddress(rs.getString("MemAddress"));
+                m.setRegDate(rs.getDate("RegDate").toLocalDate());
+                return m;
+            },
+            memID
+        );
+    }
+
     public MemberModel findByEmail(String email) {
         return jdbcTemplate.queryForObject(
             "SELECT * FROM member WHERE MemEmail = ?",
