@@ -1,10 +1,10 @@
-package com.example.librix_spring.dto.get;
+package com.example.librix_spring.dto.Member;
 
 import java.time.LocalDate;
 
 import com.example.librix_spring.model.MemberModel;
 
-public class MemberDTO {
+public class GetMemberDTO {
     
     private String memName;
     private String memEmail;
@@ -12,7 +12,7 @@ public class MemberDTO {
     private String memAddress;
     private LocalDate regDate;
 
-    public MemberDTO(String memName, String memEmail, String memTelp, String memAddress, LocalDate regDate) {
+    public GetMemberDTO(String memName, String memEmail, String memTelp, String memAddress, LocalDate regDate) {
         this.memName = memName;
         this.memEmail = memEmail;
         this.memTelp = memTelp;
@@ -20,8 +20,8 @@ public class MemberDTO {
         this.regDate = regDate;
     }
 
-    public static MemberDTO from(MemberModel m) {
-        return new MemberDTO(
+    public static GetMemberDTO from(MemberModel m) {
+        return new GetMemberDTO(
             m.getMemName(),
             m.getMemEmail(),
             m.getMemTelp(),

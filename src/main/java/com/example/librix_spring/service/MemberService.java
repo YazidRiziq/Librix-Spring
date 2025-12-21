@@ -6,7 +6,8 @@ import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.example.librix_spring.dto.get.MemberDTO;
+import com.example.librix_spring.dto.Member.GetMemberDTO;
+import com.example.librix_spring.dto.Member.PutMemberDTO;
 import com.example.librix_spring.model.MemberModel;
 import com.example.librix_spring.repository.MemberRepository;
 
@@ -31,12 +32,24 @@ public class MemberService {
         return memberRepository.findAllMembers();
     }
 
-    public List<MemberDTO> getAllMembersDTO() {
+    public List<GetMemberDTO> getAllMembersDTO() {
         return memberRepository.findAllMembers()
             .stream()
-            .map(MemberDTO::from)
+            .map(GetMemberDTO::from)
             .toList();
     }
 
+    public void updateMember(String memID, PutMemberDTO dto) {
+        int updated = memberRepository.updateMember(memID, dto);
+        if (updated == 0) {
+            throw new RuntimeException("Member not found with memID: " + memID);
+        }
+    }
 
+    public void deleteMember(String memID) {
+        int deleted = memberRepository.deleteMember(memID);
+        if (deleted == 0) {
+            throw new RuntimeException("Member not found with memID: " + memID);
+        }
+    }
 }

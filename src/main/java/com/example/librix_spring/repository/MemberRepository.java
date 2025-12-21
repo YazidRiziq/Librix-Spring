@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.librix_spring.dto.Member.PutMemberDTO;
 import com.example.librix_spring.model.MemberModel;
 
 @Repository
@@ -59,6 +60,24 @@ public class MemberRepository {
                 return m;
             }, 
             email
+        );
+    }
+
+    public int updateMember(String memID, PutMemberDTO dto) {
+        return jdbcTemplate.update(
+            "UPDATE member SET MemName = ?, MemEmail = ?, MemTelp = ?, MemAddress = ? WHERE MemID = ?",
+            dto.getMemName(),
+            dto.getMemEmail(),
+            dto.getMemTelp(),
+            dto.getMemAddress(),
+            memID
+        );
+    }
+
+    public int deleteMember(String memID) {
+        return jdbcTemplate.update(
+            "DELETE FROM member WHERE MemID = ?",
+            memID
         );
     }
 
