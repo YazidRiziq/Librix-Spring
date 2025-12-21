@@ -9,6 +9,10 @@ import com.example.librix_spring.dto.login.OfficerLoginRequestDTO;
 import com.example.librix_spring.dto.login.OfficerLoginResponseDTO;
 import com.example.librix_spring.service.AuthService;
 
+import io.swagger.v3.oas.annotations.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "Authentication", description = "API Authentication Management")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -19,12 +23,20 @@ public class AuthController {
         this.authService = authService;
     }
 
+    @Operation(
+        summary = "Member Login",
+        description = "Endpoint untuk login Member"
+    )
     @PostMapping("/login/member")
     public ResponseEntity<MemberLoginResponseDTO> loginMember(@RequestBody MemberLoginRequestDTO request) {
         MemberLoginResponseDTO response = authService.loginMember(request.getMemEmail(), request.getMemPassword());
         return ResponseEntity.ok(response);
     }
 
+    @Operation(
+        summary = "Officer Login",
+        description = "Endpoint untuk login Officer"
+    )
     @PostMapping("/login/officer")
     public ResponseEntity<OfficerLoginResponseDTO> loginOfficer(@RequestBody OfficerLoginRequestDTO request) {
         OfficerLoginResponseDTO response = authService.loginOfficer(request.getOffEmail(), request.getOffPassword());

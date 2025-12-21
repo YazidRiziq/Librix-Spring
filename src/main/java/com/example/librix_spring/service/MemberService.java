@@ -23,6 +23,10 @@ public class MemberService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
+    public List<MemberModel> getAllMembers() {
+        return memberRepository.findAllMembers();
+    }
+
     public void createMember(PostMemberDTO dto) {
         String hashPassword = passwordEncoder.encode(dto.getMemPassword());
         MemberModel memberModel = new MemberModel(
@@ -33,10 +37,6 @@ public class MemberService {
             hashPassword
         );
         memberRepository.insertMember(memberModel);
-    }
-
-    public List<MemberModel> getAllMembers() {
-        return memberRepository.findAllMembers();
     }
 
     public GetMemberDTO getMemberById(String memID) {
