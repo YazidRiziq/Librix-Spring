@@ -50,11 +50,13 @@ public class MemberRepository {
             "SELECT * FROM member WHERE MemID = ?",
             (rs, rowNum) -> {
                 MemberModel m = new MemberModel();
+                m.setMemID(rs.getString("MemID"));
                 m.setMemName(rs.getString("MemName"));
                 m.setMemEmail(rs.getString("MemEmail"));
                 m.setMemTelp(rs.getString("MemTelp"));
                 m.setMemAddress(rs.getString("MemAddress"));
                 m.setRegDate(rs.getDate("RegDate").toLocalDate());
+                m.setMemPassword(rs.getString("MemPassword"));
                 return m;
             },
             memID

@@ -6,13 +6,15 @@ import com.example.librix_spring.model.MemberModel;
 
 public class GetMemberDTO {
     
+    private String memID;
     private String memName;
     private String memEmail;
     private String memTelp;
     private String memAddress;
     private LocalDate regDate;
 
-    public GetMemberDTO(String memName, String memEmail, String memTelp, String memAddress, LocalDate regDate) {
+    public GetMemberDTO(String memID, String memName, String memEmail, String memTelp, String memAddress, LocalDate regDate) {
+        this.memID = memID;
         this.memName = memName;
         this.memEmail = memEmail;
         this.memTelp = memTelp;
@@ -22,12 +24,17 @@ public class GetMemberDTO {
 
     public static GetMemberDTO from(MemberModel m) {
         return new GetMemberDTO(
+            m.getMemID(),
             m.getMemName(),
             m.getMemEmail(),
             m.getMemTelp(),
             m.getMemAddress(),
             m.getRegDate()
         );
+    }
+
+    public String getMemID() {
+        return memID;
     }
 
     public String getMemName() {
