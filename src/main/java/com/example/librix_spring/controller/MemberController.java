@@ -12,7 +12,10 @@ import com.example.librix_spring.dto.Member.PutMemberDTO;
 import com.example.librix_spring.model.MemberModel;
 import com.example.librix_spring.service.MemberService;
 
+import io.swagger.v3.oas.annotations.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Member", description = "API Member Management")
 @RestController
 @RequestMapping("/api/members")
 public class MemberController {
@@ -23,27 +26,47 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    @Operation(
+        summary = "Get all members",
+        description = "Data ini tidak boleh bocor ke bagian UI"
+    )
     @GetMapping("/secret")
     public ResponseEntity<List<MemberModel>> getAllMembers() {
         return ResponseEntity.ok(memberService.getAllMembers());
     }
 
+    @Operation(
+        summary = "Get all Members",
+        description = "Mengambil semua data Member tanpa password"
+    )
     @GetMapping()
     public ResponseEntity<List<GetMemberDTO>> getAllMembersDTO() {
         return ResponseEntity.ok(memberService.getAllMembersDTO());
     }
 
+    @Operation(
+        summary = "Get Member by ID",
+        description = "Mengambil data Member berdasarkan ID"
+    )
     @GetMapping("/{memID}")
     public ResponseEntity<GetMemberDTO> getMemberById(@PathVariable String memID) {
         return ResponseEntity.ok(memberService.getMemberById(memID));
     }
 
+    @Operation(
+        summary = "Post new Member",
+        description = "Digunakan untuk menambahkan data Member baru"
+    )
     @PostMapping()
     public ResponseEntity<String> createMember(@RequestBody PostMemberDTO dto) {
         memberService.createMember(dto);
         return new ResponseEntity<>("Member created successfully", HttpStatus.CREATED);
     }
 
+    @Operation(
+        summary = "Update Member by ID",
+        description = "Digunakan untuk mengubah data Member berdasarkan ID"
+    )
     @PutMapping("/{memID}")
     public ResponseEntity<String> updateMember(
         @PathVariable String memID,
@@ -53,6 +76,10 @@ public class MemberController {
         return ResponseEntity.ok("Member updated successfully");
     }
 
+    @Operation(
+        summary = "Delete Member by ID",
+        description = "Digunakan untuk menghapus data Member berdasarkan ID"
+    )
     @DeleteMapping("/{memID}")
     public ResponseEntity<Void> deleteMember(@PathVariable("memID") String memID) {
         memberService.deleteMember(memID);
