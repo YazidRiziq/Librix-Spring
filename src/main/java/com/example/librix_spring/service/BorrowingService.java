@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.librix_spring.model.BorrowingModel;
 import com.example.librix_spring.repository.BorrowingRepository;
 
 @Service
@@ -15,7 +16,7 @@ public class BorrowingService {
         this.borrowingRepository = borrowingRepository;
     }
 
-    public List<com.example.librix_spring.model.BorrowingModel> getAllBorrowings() {
+    public List<BorrowingModel> getAllBorrowings() {
         return borrowingRepository.getAllBorrowings();
     }
 
