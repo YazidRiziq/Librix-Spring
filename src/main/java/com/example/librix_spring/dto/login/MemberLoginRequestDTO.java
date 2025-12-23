@@ -1,24 +1,24 @@
 package com.example.librix_spring.dto.login;
 
 public class MemberLoginRequestDTO {
-    private String memEmail;
-    private String memPassword;
+    private String email;
+    private String password;
 
     public MemberLoginRequestDTO() {}
 
     public String getMemEmail() {
-        return memEmail;
+        return email;
     }
 
-    public void setMemEmail(String memEmail) {
-        this.memEmail = memEmail;
+    public void setMemEmail(String email) {
+        this.email = email;
     }
 
     public String getMemPassword() {
-        return memPassword;
+        return password;
     }
 
-    public void setMemPassword(String memPassword) {
-        this.memPassword = memPassword;
+    public void setMemPassword(String password) {
+        this.password = password;
     }
 }

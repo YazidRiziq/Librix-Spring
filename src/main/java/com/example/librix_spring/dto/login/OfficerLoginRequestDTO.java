@@ -1,24 +1,24 @@
 package com.example.librix_spring.dto.login;
 
 public class OfficerLoginRequestDTO {
-    private String offEmail;
-    private String offPassword;
+    private String email;
+    private String password;
 
     public OfficerLoginRequestDTO() {}
 
     public String getOffEmail() {
-        return offEmail;
+        return email;
     }
 
-    public void setOffEmail(String offEmail) {
-        this.offEmail = offEmail;
+    public void setOffEmail(String email) {
+        this.email = email;
     }
 
     public String getOffPassword() {
-        return offPassword;
+        return password;
     }
 
-    public void setOffPassword(String offPassword) {
-        this.offPassword = offPassword;
+    public void setOffPassword(String password) {
+        this.password = password;
     }
 }
