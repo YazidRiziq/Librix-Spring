@@ -1,25 +1,25 @@
 package com.example.librix_spring.dto.login;
 
 public class OfficerLoginResponseDTO {
-    private String offID;
-    private String offName;
-    private String offEmail;
+    private String id;
+    private String name;
+    private String email;
 
-    public OfficerLoginResponseDTO(String offID, String offName, String offEmail) {
-        this.offID = offID;
-        this.offName = offName;
-        this.offEmail = offEmail;
+    public OfficerLoginResponseDTO(String id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
     }
 
-    public String getOffID() {
-        return offID;
+    public String getId() {
+        return id;
     }
 
-    public String getOffName() {
-        return offName;
+    public String getName() {
+        return name;
     }
 
-    public String getOffEmail() {
-        return offEmail;
+    public String getEmail() {
+        return email;
     }
 }

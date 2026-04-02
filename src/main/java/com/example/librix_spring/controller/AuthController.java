@@ -29,7 +29,7 @@ public class AuthController {
     )
     @PostMapping("/login/member")
     public ResponseEntity<MemberLoginResponseDTO> loginMember(@RequestBody MemberLoginRequestDTO request) {
-        MemberLoginResponseDTO response = authService.loginMember(request.getMemEmail(), request.getMemPassword());
+        MemberLoginResponseDTO response = authService.loginMember(request.getEmail(), request.getPassword());
         return ResponseEntity.ok(response);
     }
 
@@ -39,7 +39,7 @@ public class AuthController {
     )
     @PostMapping("/login/officer")
     public ResponseEntity<OfficerLoginResponseDTO> loginOfficer(@RequestBody OfficerLoginRequestDTO request) {
-        OfficerLoginResponseDTO response = authService.loginOfficer(request.getOffEmail(), request.getOffPassword());
+        OfficerLoginResponseDTO response = authService.loginOfficer(request.getEmail(), request.getPassword());
         return ResponseEntity.ok(response);
     }
 

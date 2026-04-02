@@ -2,6 +2,7 @@ package com.example.librix_spring.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.librix_spring.dto.Book.GetBookDTO;
 import com.example.librix_spring.model.BookModel;
 import com.example.librix_spring.service.BookService;
 
@@ -41,6 +42,24 @@ public class BookController {
     @GetMapping("/{bookCode}")
     public ResponseEntity<BookModel> getBookById(@PathVariable String bookCode) {
         return ResponseEntity.ok(bookService.getBookById(bookCode));
+    }
+
+    @Operation(
+        summary = "Get all Books for Management",
+        description = "Menampilkan semua data Buku untuk keperluan manajemen Officer"
+    )
+    @GetMapping("/manage")
+    public ResponseEntity<List<GetBookDTO>> getAllBooksManage() {
+        return ResponseEntity.ok(bookService.getAllBooksManage());
+    }
+
+    @Operation(
+        summary = "Get Book by Title for Management",
+        description = "Mengambil data Buku berdasarkan Title untuk keperluan manajemen Officer"
+    )
+    @GetMapping("/manage/{bookTitle}")
+    public ResponseEntity<List<GetBookDTO>> getBookByTitle(@PathVariable String bookTitle) {
+        return ResponseEntity.ok(bookService.getBookByTitle(bookTitle));
     }
 
     @Operation(
