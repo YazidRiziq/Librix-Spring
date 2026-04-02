@@ -11,15 +11,15 @@ public class MemberLoginResponseDTO {
         this.email = email;
     }
 
-    public String getMemID() {
+    public String getId() {
         return id;
     }
 
-    public String getMemName() {
+    public String getName() {
         return name;
     }
 
-    public String getMemEmail() {
+    public String getEmail() {
         return email;
     }
 }

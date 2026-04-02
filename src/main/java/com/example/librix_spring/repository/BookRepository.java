@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.librix_spring.dto.Book.GetBookDTO;
 import com.example.librix_spring.model.BookModel;
 
 @Repository
@@ -52,6 +53,48 @@ public class BookRepository {
                 return b;
             },
             bookCode
+        );
+    }
+
+    public List<GetBookDTO> findAllBooksManage() {
+        return jdbcTemplate.query(
+            "SELECT * FROM view_getallbooks",
+            (rs, rowNum) -> {
+                return new GetBookDTO(
+                    rs.getString("BookCode"),
+                    rs.getString("CatCode"),
+                    rs.getString("CatName"),
+                    rs.getString("ISBN"),
+                    rs.getString("BookTitle"),
+                    rs.getString("AutName"),
+                    rs.getString("Publisher"),
+                    rs.getInt("PubYear"),
+                    rs.getInt("NumPages"),
+                    rs.getInt("TotalCopies")
+                );
+            }
+        );
+    }
+
+    public List<GetBookDTO> findBookByTitle(String bookTitle) {
+        String likePattern = "%" + bookTitle + "%";
+        return jdbcTemplate.query(
+            "SELECT * FROM view_getallbooks WHERE BookTitle LIKE ?",
+            (rs, rowNum) -> {
+                return new GetBookDTO(
+                    rs.getString("BookCode"),
+                    rs.getString("CatCode"),
+                    rs.getString("CatName"),
+                    rs.getString("ISBN"),
+                    rs.getString("BookTitle"),
+                    rs.getString("AutName"),
+                    rs.getString("Publisher"),
+                    rs.getInt("PubYear"),
+                    rs.getInt("NumPages"),
+                    rs.getInt("TotalCopies")
+                );
+            },
+            likePattern
         );
     }
 

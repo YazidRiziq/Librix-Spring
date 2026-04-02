@@ -11,15 +11,15 @@ public class OfficerLoginResponseDTO {
         this.email = email;
     }
 
-    public String getOffID() {
+    public String getId() {
         return id;
     }
 
-    public String getOffName() {
+    public String getName() {
         return name;
     }
 
-    public String getOffEmail() {
+    public String getEmail() {
         return email;
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.librix_spring.dto.Book.GetBookDTO;
 import com.example.librix_spring.model.BookModel;
 import com.example.librix_spring.repository.BookRepository;
 
@@ -26,6 +27,14 @@ public class BookService {
             throw new RuntimeException("Book not found with BookCode: " + bookCode);
         }
         return bm;
+    }
+
+    public List<GetBookDTO> getAllBooksManage() {
+        return bookRepository.findAllBooksManage();
+    }
+
+    public List<GetBookDTO> getBookByTitle(String bookTitle) {
+        return bookRepository.findBookByTitle(bookTitle);
     }
 
     public void createBook(String catName, BookModel bookModel) {
