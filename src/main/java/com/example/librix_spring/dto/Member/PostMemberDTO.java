@@ -2,38 +2,38 @@ package com.example.librix_spring.dto.Member;
 
 public class PostMemberDTO {
     
-    private String memName;
-    private String memEmail;
-    private String memTelp;
-    private String memAddress;
-    private String memPassword;
+    private String name;
+    private String email;
+    private String telp;
+    private String address;
+    private String password;
 
-    public PostMemberDTO(String memName, String memEmail, String memTelp, String memAddress, String memPassword) {
-        this.memName = memName;
-        this.memEmail = memEmail;
-        this.memTelp = memTelp;
-        this.memAddress = memAddress;
-        this.memPassword = memPassword;
+    public PostMemberDTO(String name, String email, String telp, String address, String password) {
+        this.name = name;
+        this.email = email;
+        this.telp = telp;
+        this.address = address;
+        this.password = password;
     }
 
-    public String getMemName() {
-        return memName;
+    public String getName() {
+        return name;
     }
 
-    public String getMemEmail() {
-        return memEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public String getMemTelp() {
-        return memTelp;
+    public String getTelp() {
+        return telp;
     }
 
-    public String getMemAddress() {
-        return memAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public String getMemPassword() {
-        return memPassword;
+    public String getPassword() {
+        return password;
     }
 
 }
