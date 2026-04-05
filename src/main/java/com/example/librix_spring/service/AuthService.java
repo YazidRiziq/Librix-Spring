@@ -9,6 +9,7 @@ import com.example.librix_spring.model.MemberModel;
 import com.example.librix_spring.model.OfficerModel;
 import com.example.librix_spring.repository.MemberRepository;
 import com.example.librix_spring.repository.OfficerRepository;
+import com.example.librix_spring.security.JwtUtils;
 
 @Service
 public class AuthService {
@@ -16,11 +17,13 @@ public class AuthService {
     private final MemberRepository memberRepository;
     private final OfficerRepository officerRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final JwtUtils jwtUtils;
 
-    public AuthService(MemberRepository memberRepository, OfficerRepository officerRepository) {
+    public AuthService(MemberRepository memberRepository, OfficerRepository officerRepository, JwtUtils jwtUtils) {
         this.memberRepository = memberRepository;
         this.officerRepository = officerRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
+        this.jwtUtils = jwtUtils;
     }
 
     public MemberLoginResponseDTO loginMember(String email, String password) {
@@ -36,15 +39,19 @@ public class AuthService {
             throw new RuntimeException("Invalid credentials");
         }
 
+        String token = jwtUtils.generateToken(email);
+
         return new MemberLoginResponseDTO(
             member.getMemID(),
             member.getMemName(),
-            member.getMemEmail()
+            member.getMemEmail(),
+            token
         );   
     }
 
     public OfficerLoginResponseDTO loginOfficer(String email, String password) {
         OfficerModel officer = officerRepository.findByEmail(email);
+
         if (officer == null) {
             throw new RuntimeException("Officer not found");
         }
@@ -55,10 +62,13 @@ public class AuthService {
             throw new RuntimeException("Invalid credentials");
         }
 
+        String token = jwtUtils.generateToken(email);
+
         return new OfficerLoginResponseDTO(
             officer.getOffID(),
             officer.getOffName(),
-            officer.getOffEmail()
+            officer.getOffEmail(),
+            token
         );   
     }
 

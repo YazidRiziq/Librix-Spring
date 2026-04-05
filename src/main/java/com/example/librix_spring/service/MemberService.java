@@ -28,12 +28,12 @@ public class MemberService {
     }
 
     public void createMember(PostMemberDTO dto) {
-        String hashPassword = passwordEncoder.encode(dto.getMemPassword());
+        String hashPassword = passwordEncoder.encode(dto.getPassword());
         MemberModel memberModel = new MemberModel(
-            dto.getMemName(),
-            dto.getMemEmail(),
-            dto.getMemTelp(),
-            dto.getMemAddress(),
+            dto.getName(),
+            dto.getEmail(),
+            dto.getTelp(),
+            dto.getAddress(),
             hashPassword
         );
         memberRepository.insertMember(memberModel);
